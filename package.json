@@ -1,0 +1,9 @@
+{
+	"devDependencies": {
+		"lerna": "^2.11.0"
+	},
+	"name": "mono",
+	"version": "0.0.1",
+	"description": "monorepo example",
+	"private": true
+}
