@@ -1,9 +1,19 @@
 {
-	"devDependencies": {
-		"lerna": "^2.11.0"
-	},
-	"name": "mono",
-	"version": "0.0.1",
-	"description": "monorepo example",
-	"private": true
+  "name": "mono",
+  "version": "0.0.1",
+  "description": "monorepo example",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^2.11.0"
+  },
+  "engines": {
+    "node": ">=10.5.0",
+    "npm": ">=6.1.0"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "projects/*"
+    ]
+  }
 }
