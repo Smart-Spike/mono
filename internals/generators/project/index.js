@@ -5,6 +5,7 @@
  */
 
 const path = require('path');
+const root = path.resolve(__dirname, '../../../');
 const git = require('simple-git');
 const ora = require('ora');
 const projectExists = require('../utils/projectExists');
@@ -31,6 +32,7 @@ module.exports = (plop) => {
         });
     });
   });
+
   return {
     description: 'Generates a new project in `/projects`',
     prompts: [{
@@ -66,7 +68,19 @@ module.exports = (plop) => {
       type: 'generateBoilerplateProject'
     }, {
       type: 'modify',
-      path:
+      path: `${root}/projects/{{name}}/package.json`,
+      pattern: /"name": ".+"/gi,
+      template: '"name": "{{name}}"'
+    }, {
+      type: 'modify',
+      path: `${root}/projects/{{name}}/package.json`,
+      pattern: /"description": ".+"/gi,
+      template: '"description": "{{description}}"'
+    }, {
+      type: 'modify',
+      path: `${root}/projects/{{name}}/package.json`,
+      pattern: /"version": ".+"/gi,
+      template: '"version": "0.0.1"'
     }]
   };
 };
