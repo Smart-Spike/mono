@@ -4,7 +4,9 @@
   "description": "monorepo example",
   "private": true,
   "devDependencies": {
-    "lerna": "^2.11.0"
+    "lerna": "^2.11.0",
+    "ora": "^2.1.0",
+    "simple-git": "^1.96.0"
   },
   "engines": {
     "node": ">=10.5.0",
@@ -15,5 +17,13 @@
       "packages/*",
       "projects/*"
     ]
+  },
+  "packagesMetaData": {
+    "scopes": [
+      "@mono"
+    ]
+  },
+  "scripts": {
+    "generate": "plop --plopfile internals/generators/index.js"
   }
 }
