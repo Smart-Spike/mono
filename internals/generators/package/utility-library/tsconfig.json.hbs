@@ -1,0 +1,15 @@
+{
+  // FIXME: Temporary fix until github.com/Microsoft/TypeScript/issues/18865 is fixed.
+  // Change to @test/typescript-config when above is resolved.
+  "extends": "./node_modules/@mono/typescript-config/tsconfig/index.json",
+
+  // NOTE: we must define any paths in the individual package tsconfig.json files
+  // otherwise they are counter-intuitively resolved relative to the extended config
+  "compilerOptions": {
+    "outDir": "./dist"
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

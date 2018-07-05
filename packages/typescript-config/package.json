@@ -1,0 +1,10 @@
+{
+  "name": "@mono/typescript-config",
+  "description": "Standard typescript config for packages",
+  "version": "0.0.1",
+  "devDependencies": {
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "tslint-react": "^3.6.0"
+  }
+}
