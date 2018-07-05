@@ -26,8 +26,13 @@ const checkDescriptor = descriptor => {
   );
 };
 
+interface Descriptor {
+  mode?: string,
+  saga?: any
+}
+
 export function injectSagaFactory(store, isValid) {
-  return function injectSaga(key, descriptor = {}, args) {
+  return function injectSaga(key, descriptor: Descriptor = {}, args) {
     if (!isValid) checkStore(store);
 
     const newDescriptor = {

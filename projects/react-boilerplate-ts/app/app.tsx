@@ -7,8 +7,14 @@
 
 declare global {
   interface Window {
-    Intl: any
+    Intl: any,
   }
+
+  // interface AppStore extends Store<any, AnyAction>{
+  //   runSaga: (saga: () => Iterator<any>) => Task,
+  //   injectedReducers: object,
+  //   injectedSagas: object
+  // }
 }
 
 // Needed for redux-saga es6 generator support
