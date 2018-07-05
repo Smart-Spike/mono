@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "outDir": "tsDist",
+    "module": "esNext",
+    "target": "esNext",
+    "rootDir": "app",
+    "baseUrl": "app"
+  },
+  "exclude": ["docs", "internals", "node_modules", "tsDist", "dist", "server"]
+}

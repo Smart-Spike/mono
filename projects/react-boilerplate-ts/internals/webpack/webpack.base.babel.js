@@ -26,10 +26,19 @@ module.exports = options => ({
   module: {
     rules: [
       {
+        test: /\.tsx$/, // Transform all .ts files required somewhere with Babel
+        exclude: /node_modules/,
+        use: {
+          loader: 'awesome-typescript-loader',
+          options: options.babelQuery,
+        },
+      },
+      {
+        enforce: 'pre',
         test: /\.js$/, // Transform all .js files required somewhere with Babel
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: 'source-map-loader',
           options: options.babelQuery,
         },
       },
@@ -130,7 +139,7 @@ module.exports = options => ({
   ]),
   resolve: {
     modules: ['node_modules', 'app'],
-    extensions: ['.js', '.jsx', '.react.js'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main'],
   },
   devtool: options.devtool,
