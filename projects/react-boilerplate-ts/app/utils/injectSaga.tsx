@@ -1,7 +1,7 @@
 import * as React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 
-import getInjectors from './sagaInjectors';
+import { getInjectors } from './sagaInjectors';
 
 /**
  * Dynamically injects a saga, passes component's props as saga arguments

@@ -8,36 +8,36 @@ import { identity } from 'lodash';
 
 import configureStore from '../../configureStore';
 import injectReducer from '../injectReducer';
-import * as reducerInjectors from '../reducerInjectors';
 
 // Fixtures
 const Component = () => null;
 
 const reducer = identity;
 
-fdescribe('injectReducer decorator', () => {
-  let store;
-  let injectors;
-  let ComponentWithReducer;
+const mockInjectors = {
+  injectReducer: jest.fn()
+};
 
-  beforeAll(() => {
-    reducerInjectors.default = jest.fn().mockImplementation(() => injectors);
-  });
+jest.mock('../reducerInjectors', () => {
+  return {
+    getInjectors: () =>  mockInjectors
+  }
+});
+
+describe('injectReducer decorator', () => {
+  let store;
+  let ComponentWithReducer;
 
   beforeEach(() => {
     store = configureStore({}, {});
-    injectors = {
-      injectReducer: jest.fn(),
-    };
     ComponentWithReducer = injectReducer({ key: 'test', reducer })(Component);
-    reducerInjectors.default.mockClear();
   });
 
   it('should inject a given reducer', () => {
     shallow(<ComponentWithReducer />, { context: { store } });
 
-    expect(injectors.injectReducer).toHaveBeenCalledTimes(1);
-    expect(injectors.injectReducer).toHaveBeenCalledWith('test', reducer);
+    expect(mockInjectors.injectReducer).toHaveBeenCalledTimes(1);
+    expect(mockInjectors.injectReducer).toHaveBeenCalledWith('test', reducer);
   });
 
   it('should set a correct display name', () => {
