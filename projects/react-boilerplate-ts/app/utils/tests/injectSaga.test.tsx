@@ -2,10 +2,9 @@
  * Test injectors
  */
 
-import { memoryHistory } from 'react-router-dom';
 import { put } from 'redux-saga/effects';
 import { shallow } from 'enzyme';
-import React from 'react';
+import * as React from 'react';
 
 import configureStore from '../../configureStore';
 import injectSaga from '../injectSaga';
@@ -28,7 +27,7 @@ describe('injectSaga decorator', () => {
   });
 
   beforeEach(() => {
-    store = configureStore({}, memoryHistory);
+    store = configureStore({}, {});
     injectors = {
       injectSaga: jest.fn(),
       ejectSaga: jest.fn(),
@@ -67,7 +66,7 @@ describe('injectSaga decorator', () => {
   it('should set a correct display name', () => {
     expect(ComponentWithSaga.displayName).toBe('withSaga(Component)');
     expect(
-      injectSaga({ key: 'test', saga: testSaga })(() => null).displayName,
+      injectSaga({ key: 'test', saga: testSaga, mode: '' })(() => null).displayName,
     ).toBe('withSaga(Component)');
   });
 

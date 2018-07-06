@@ -1,8 +1,5 @@
-import isEmpty from 'lodash/isEmpty';
-import isFunction from 'lodash/isFunction';
-import isString from 'lodash/isString';
+import { isEmpty, isFunction, isString, conformsTo, includes } from 'lodash';
 import invariant from 'invariant';
-import conformsTo from 'lodash/conformsTo';
 
 import checkStore from './checkStore';
 import { DAEMON, ONCE_TILL_UNMOUNT, RESTART_ON_REMOUNT } from './constants';
@@ -18,7 +15,7 @@ const checkKey = key =>
 const checkDescriptor = descriptor => {
   const shape = {
     saga: isFunction,
-    mode: mode => isString(mode) && allowedModes.includes(mode),
+    mode: mode => isString(mode) && includes(allowedModes, mode),
   };
   invariant(
     conformsTo(descriptor, shape),
@@ -31,8 +28,8 @@ interface Descriptor {
   saga?: any
 }
 
-export function injectSagaFactory(store, isValid) {
-  return function injectSaga(key, descriptor: Descriptor = {}, args) {
+export function injectSagaFactory(store, isValid: boolean = false) {
+  return function injectSaga(key, descriptor: any = {}, args?: any) {
     if (!isValid) checkStore(store);
 
     const newDescriptor = {
@@ -69,7 +66,7 @@ export function injectSagaFactory(store, isValid) {
   };
 }
 
-export function ejectSagaFactory(store, isValid) {
+export function ejectSagaFactory(store, isValid: boolean = false) {
   return function ejectSaga(key) {
     if (!isValid) checkStore(store);
 
