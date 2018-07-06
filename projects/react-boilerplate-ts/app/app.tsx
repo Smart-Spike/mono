@@ -5,18 +5,6 @@
  * code.
  */
 
-declare global {
-  interface Window {
-    Intl: any,
-  }
-
-  // interface AppStore extends Store<any, AnyAction>{
-  //   runSaga: (saga: () => Iterator<any>) => Task,
-  //   injectedReducers: object,
-  //   injectedSagas: object
-  // }
-}
-
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
 
@@ -47,6 +35,13 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
+
+declare global {
+  interface Window {
+    Intl: any,
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
+  }
+}
 
 // Create redux store with history
 const initialState = {};

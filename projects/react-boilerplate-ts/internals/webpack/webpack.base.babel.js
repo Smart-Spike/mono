@@ -26,7 +26,7 @@ module.exports = options => ({
   module: {
     rules: [
       {
-        test: /\.tsx$/, // Transform all .ts files required somewhere with Babel
+        test: /\.ts|\.tsx$/, // Transform all .ts files required somewhere with Babel
         exclude: /node_modules/,
         use: {
           loader: 'awesome-typescript-loader',
