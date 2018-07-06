@@ -5,5 +5,6 @@
  */
 
 module.exports = (plop) => {
+  plop.setGenerator('package', require('./package')(plop));
   plop.setGenerator('project', require('./project')(plop));
 };
