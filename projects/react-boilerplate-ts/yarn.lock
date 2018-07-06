@@ -208,6 +208,13 @@
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/@types/react-intl/-/react-intl-2.3.8.tgz#de56b21b67e39df24bc0fc7e67b437976b666919"
 
+"@types/react-loadable@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@types/react-loadable/-/react-loadable-5.4.0.tgz#7a4f0673de07473525ab27959cf4c2601e25f37f"
+  dependencies:
+    "@types/react" "*"
+    "@types/webpack" "*"
+
 "@types/react-redux@^6.0.3":
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/@types/react-redux/-/react-redux-6.0.3.tgz#7e8a86cce1c453166056bce9d4eb5cab5a2cfe13"
@@ -245,9 +252,28 @@
   dependencies:
     csstype "^2.2.0"
 
+"@types/tapable@*":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.3.tgz#0db6e44f99933f9bfaa952ab9db9caa9ce4896e2"
+
+"@types/uglify-js@*":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.0.2.tgz#f30c75458d18e8ee885c792c04adcb78a13bc286"
+  dependencies:
+    source-map "^0.6.1"
+
 "@types/webpack-env@^1.13.6":
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/@types/webpack-env/-/webpack-env-1.13.6.tgz#128d1685a7c34d31ed17010fc87d6a12c1de6976"
+
+"@types/webpack@*":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.4.5.tgz#d45596fb67aeb724495ef5e7c78771bfc35f2955"
+  dependencies:
+    "@types/node" "*"
+    "@types/tapable" "*"
+    "@types/uglify-js" "*"
+    source-map "^0.6.0"
 
 "@webassemblyjs/ast@1.5.12":
   version "1.5.12"
