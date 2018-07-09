@@ -20,7 +20,6 @@ interface Props {
 }
 
 export class LanguageProvider extends React.PureComponent<Props> {
-  // eslint-disable-line react/prefer-stateless-function
   public render() {
     return (
       <IntlProvider
