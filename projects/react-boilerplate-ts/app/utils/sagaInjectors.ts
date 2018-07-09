@@ -30,7 +30,9 @@ interface Descriptor {
 
 export function injectSagaFactory(store, isValid: boolean = false) {
   return function injectSaga(key, descriptor: any = {}, args?: any) {
-    if (!isValid) checkStore(store);
+    if (!isValid) {
+      checkStore(store);
+    }
 
     const newDescriptor = {
       ...descriptor,
@@ -52,10 +54,7 @@ export function injectSagaFactory(store, isValid: boolean = false) {
       }
     }
 
-    if (
-      !hasSaga ||
-      (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT)
-    ) {
+    if ( !hasSaga || (hasSaga && mode !== DAEMON && mode !== ONCE_TILL_UNMOUNT) ) {
       /* eslint-disable no-param-reassign */
       store.injectedSagas[key] = {
         ...newDescriptor,
@@ -68,7 +67,9 @@ export function injectSagaFactory(store, isValid: boolean = false) {
 
 export function ejectSagaFactory(store, isValid: boolean = false) {
   return function ejectSaga(key) {
-    if (!isValid) checkStore(store);
+    if (!isValid) {
+      checkStore(store);
+    }
 
     checkKey(key);
 

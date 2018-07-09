@@ -21,7 +21,7 @@ interface Props {
 
 export class LanguageProvider extends React.PureComponent<Props> {
   // eslint-disable-line react/prefer-stateless-function
-  render() {
+  public render() {
     return (
       <IntlProvider
         locale={this.props.locale}
