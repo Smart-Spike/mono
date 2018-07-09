@@ -14,8 +14,8 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*",
-      "projects/*"
+      "projects/*",
+      "packages/*"
     ]
   },
   "nohoist": [
