@@ -49,3 +49,8 @@ For example to run the `test` script for a specific package you would use:
 `npx lerna run test --scope=@mono/package-a`
 
 If you omitted the `--scope` argument the test script would be run for all packages and projects.
+
+
+For long-running processes it is preferable to use `lerna exec` rather than `lerna run` For example:
+
+`npx lerna exec --scope=project-foo -- yarn run start`
