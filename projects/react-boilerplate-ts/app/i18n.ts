@@ -7,13 +7,11 @@
  *   script `extract-intl`, and must use CommonJS module syntax
  *   You CANNOT use import/export in this file.
  */
+import { addLocaleData } from 'react-intl';
+import enLocaleData from 'react-intl/locale-data/en';
 
-/* tslint:disable */
-const addLocaleData = require('react-intl').addLocaleData;
-const enLocaleData = require('react-intl/locale-data/en');
-
+// tslint:disable-next-line no-var-requires
 const enTranslationMessages = require('./translations/en.json');
-/* tslint:enable */
 
 addLocaleData(enLocaleData);
 

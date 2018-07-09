@@ -3,8 +3,9 @@
   "rulesDirectory": ["tslint-plugin-prettier"],
   "rules": {
     "ordered-imports": false,
-    "interface-name": [true, "never-prefix"],
     "object-literal-sort-keys": false,
+    "interface-name": [true, "never-prefix"],
+    "jsx-boolean-value": [true, "never"],
     "prettier": true
   }
 }

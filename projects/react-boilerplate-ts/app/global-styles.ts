@@ -1,6 +1,6 @@
 import { injectGlobal } from 'styled-components';
 
-/* tslint:disable */
+// tslint:disable-next-line no-unused-expression
 injectGlobal`
   html,
   body {
@@ -28,4 +28,3 @@ injectGlobal`
     line-height: 1.5em;
   }
 `;
-/* tslint:enable */
