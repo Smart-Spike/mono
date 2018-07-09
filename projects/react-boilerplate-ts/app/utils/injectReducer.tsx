@@ -12,18 +12,15 @@ import { getInjectors } from './reducerInjectors';
  */
 export default ({ key, reducer }) => WrappedComponent => {
   class ReducerInjector extends React.Component {
-    private static WrappedComponent = WrappedComponent;
-    private static displayName = `withReducer(${WrappedComponent.displayName ||
-      WrappedComponent.name ||
-      'Component'})`;
     private injectors = getInjectors(this.context.store);
+    private static WrappedComponent = WrappedComponent;
+    public static displayName = `withReducer(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
     public componentWillMount() {
       const { injectReducer } = this.injectors;
 
       injectReducer(key, reducer);
     }
-
 
     public render() {
       return <WrappedComponent {...this.props} />;

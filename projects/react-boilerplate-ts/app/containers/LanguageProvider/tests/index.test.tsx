@@ -43,10 +43,6 @@ describe('<ConnectedLanguageProvider />', () => {
         </ConnectedLanguageProvider>
       </Provider>,
     );
-    expect(
-      renderedComponent.contains(
-        <FormattedMessage {...messages.someMessage} />,
-      ),
-    ).toBe(true);
+    expect(renderedComponent.contains(<FormattedMessage {...messages.someMessage} />)).toBe(true);
   });
 });

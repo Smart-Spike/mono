@@ -14,9 +14,9 @@ import { IntlProvider } from 'react-intl';
 import { makeSelectLocale } from './selectors';
 
 interface Props {
-  locale?: string,
-  messages: object,
-  children: React.ReactNode
+  locale?: string;
+  messages: object;
+  children: React.ReactNode;
 }
 
 export class LanguageProvider extends React.PureComponent<Props> {

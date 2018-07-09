@@ -38,8 +38,8 @@ import './global-styles';
 
 declare global {
   interface Window {
-    Intl: any,
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
+    Intl: any;
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
   }
 }
 

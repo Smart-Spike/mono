@@ -16,12 +16,9 @@ import { getInjectors } from './sagaInjectors';
  */
 export default ({ key, saga, mode }) => WrappedComponent => {
   class InjectSaga extends React.Component {
-    private static WrappedComponent = WrappedComponent;
-    private static displayName = `withSaga(${WrappedComponent.displayName ||
-      WrappedComponent.name ||
-      'Component'})`;
     private injectors = getInjectors(this.context.store);
-
+    private static WrappedComponent = WrappedComponent;
+    public static displayName = `withSaga(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
     public componentWillMount() {
       const { injectSaga } = this.injectors;
@@ -40,5 +37,5 @@ export default ({ key, saga, mode }) => WrappedComponent => {
     }
   }
 
-  return hoistNonReactStatics(InjectSaga, WrappedComponent)
+  return hoistNonReactStatics(InjectSaga, WrappedComponent);
 };
