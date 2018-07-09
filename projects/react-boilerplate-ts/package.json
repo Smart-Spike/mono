@@ -45,17 +45,6 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write"
   },
-  "lint-staged": {
-    "*.js": [
-      "npm run lint:eslint:fix",
-      "git add --force"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add --force"
-    ]
-  },
-  "pre-commit": "lint:staged",
   "babel": {
     "plugins": [
       "styled-components"
@@ -207,7 +196,6 @@
     "awesome-typescript-loader": "^5.2.0",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
-    "babel-eslint": "8.2.3",
     "babel-loader": "7.1.4",
     "babel-plugin-dynamic-import-node": "1.2.0",
     "babel-plugin-react-intl": "2.4.0",
@@ -227,16 +215,6 @@
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
     "enzyme-to-json": "3.3.4",
-    "eslint": "4.19.1",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-config-airbnb-base": "12.1.0",
-    "eslint-config-prettier": "2.9.0",
-    "eslint-import-resolver-webpack": "0.10.0",
-    "eslint-plugin-import": "2.12.0",
-    "eslint-plugin-jsx-a11y": "6.0.3",
-    "eslint-plugin-prettier": "2.6.0",
-    "eslint-plugin-react": "7.9.1",
-    "eslint-plugin-redux-saga": "0.9.0",
     "eventsource-polyfill": "0.9.6",
     "exports-loader": "0.7.0",
     "file-loader": "1.1.11",
@@ -268,7 +246,6 @@
     "ts-jest": "^23.0.0",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
-    "tslint-eslint-rules": "^5.3.1",
     "tslint-plugin-prettier": "^1.3.0",
     "tslint-react": "^3.6.0",
     "typescript": "^2.9.2",
