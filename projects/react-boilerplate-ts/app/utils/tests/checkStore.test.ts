@@ -9,11 +9,11 @@ describe('checkStore', () => {
 
   beforeEach(() => {
     store = {
-      dispatch: () => {},
-      subscribe: () => {},
-      getState: () => {},
-      replaceReducer: () => {},
-      runSaga: () => {},
+      dispatch: jest.fn(),
+      subscribe: jest.fn(),
+      getState: jest.fn(),
+      replaceReducer: jest.fn(),
+      runSaga: jest.fn(),
       injectedReducers: {},
       injectedSagas: {},
     };

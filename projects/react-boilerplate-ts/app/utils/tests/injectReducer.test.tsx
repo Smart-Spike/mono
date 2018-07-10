@@ -15,13 +15,13 @@ const Component = () => null;
 const reducer = identity;
 
 const mockInjectors = {
-  injectReducer: jest.fn()
+  injectReducer: jest.fn(),
 };
 
 jest.mock('../reducerInjectors', () => {
   return {
-    getInjectors: () =>  mockInjectors
-  }
+    getInjectors: () => mockInjectors,
+  };
 });
 
 describe('injectReducer decorator', () => {
@@ -42,9 +42,7 @@ describe('injectReducer decorator', () => {
 
   it('should set a correct display name', () => {
     expect(ComponentWithReducer.displayName).toBe('withReducer(Component)');
-    expect(
-      injectReducer({ key: 'test', reducer })(() => null).displayName,
-    ).toBe('withReducer(Component)');
+    expect(injectReducer({ key: 'test', reducer })(() => null).displayName).toBe('withReducer(Component)');
   });
 
   it('should propagate props', () => {

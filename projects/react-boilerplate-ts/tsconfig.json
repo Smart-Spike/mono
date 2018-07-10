@@ -13,5 +13,5 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["docs", "internals", "node_modules", "tsDist", "dist", "server"]
+  "exclude": ["docs", "internals", "node_modules", "tsDist", "dist", "server", "coverage"]
 }

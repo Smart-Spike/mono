@@ -19,7 +19,8 @@
     ]
   },
   "nohoist": [
-    "**/@mono/typescript-config", "**/@mono/typescript-config/**"
+    "**/@mono/typescript-config",
+    "**/@mono/typescript-config/**"
   ],
   "packagesMetaData": {
     "scopes": [

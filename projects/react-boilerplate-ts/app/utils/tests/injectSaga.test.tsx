@@ -23,8 +23,8 @@ const mockInjectors = {
 
 jest.mock('../sagaInjectors', () => {
   return {
-    getInjectors: () => mockInjectors
-  }
+    getInjectors: () => mockInjectors,
+  };
 });
 
 describe('injectSaga decorator', () => {
@@ -45,11 +45,7 @@ describe('injectSaga decorator', () => {
     shallow(<ComponentWithSaga {...props} />, { context: { store } });
 
     expect(mockInjectors.injectSaga).toHaveBeenCalledTimes(1);
-    expect(mockInjectors.injectSaga).toHaveBeenCalledWith(
-      'test',
-      { saga: testSaga, mode: 'testMode' },
-      props,
-    );
+    expect(mockInjectors.injectSaga).toHaveBeenCalledWith('test', { saga: testSaga, mode: 'testMode' }, props);
   });
 
   it('should eject on unmount with a correct saga key', () => {
@@ -65,9 +61,7 @@ describe('injectSaga decorator', () => {
 
   it('should set a correct display name', () => {
     expect(ComponentWithSaga.displayName).toBe('withSaga(Component)');
-    expect(
-      injectSaga({ key: 'test', saga: testSaga, mode: '' })(() => null).displayName,
-    ).toBe('withSaga(Component)');
+    expect(injectSaga({ key: 'test', saga: testSaga, mode: '' })(() => null).displayName).toBe('withSaga(Component)');
   });
 
   it('should propagate props', () => {

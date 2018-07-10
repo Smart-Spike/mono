@@ -14,14 +14,13 @@ import { IntlProvider } from 'react-intl';
 import { makeSelectLocale } from './selectors';
 
 interface Props {
-  locale?: string,
-  messages: object,
-  children: React.ReactNode
+  locale?: string;
+  messages: object;
+  children: React.ReactNode;
 }
 
 export class LanguageProvider extends React.PureComponent<Props> {
-  // eslint-disable-line react/prefer-stateless-function
-  render() {
+  public render() {
     return (
       <IntlProvider
         locale={this.props.locale}

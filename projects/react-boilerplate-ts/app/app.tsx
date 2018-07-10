@@ -23,10 +23,8 @@ import App from 'containers/App/index';
 import LanguageProvider from 'containers/LanguageProvider/index';
 
 // Load the favicon and the .htaccess file
-/* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=[name].[ext]!./.htaccess';
-/* eslint-enable import/no-unresolved, import/extensions */
 
 import configureStore from './configureStore';
 
@@ -38,8 +36,8 @@ import './global-styles';
 
 declare global {
   interface Window {
-    Intl: any,
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any
+    Intl: any;
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
   }
 }
 
@@ -90,5 +88,7 @@ if (!window.Intl) {
 // it's not most important operation and if main code fails,
 // we do not want it installed
 if (process.env.NODE_ENV === 'production') {
-  require('offline-plugin/runtime').install(); // eslint-disable-line global-require
+  /* tslint:disable */
+  require('offline-plugin/runtime').install();
+  /* tslint:enable */
 }
