@@ -37,6 +37,7 @@
     "lint": "npm run lint:tslint && npm run lint:css",
     "lint:css": "stylelint './app/**/*.{ts,tsx}'",
     "lint:tslint": "tslint -c tslint.json 'app/**/*.{ts,tsx}'",
+    "lint:tslint:fix": "tslint -c tslint.json 'app/**/*.{ts,tsx}' --fix",
     "lint:staged": "lint-staged",
     "pretest": "npm run test:clean && npm run lint",
     "test:clean": "rimraf ./coverage",
@@ -45,6 +46,17 @@
     "coveralls": "cat ./coverage/lcov.info | coveralls",
     "prettify": "prettier --write"
   },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run lint:tslint:fix",
+      "git add --force"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add --force"
+    ]
+  },
+  "pre-commit": "lint:staged",
   "babel": {
     "plugins": [
       "styled-components"
