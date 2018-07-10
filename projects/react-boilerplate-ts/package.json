@@ -108,6 +108,7 @@
     ]
   },
   "jest": {
+    "displayName": "react-boilerplate-ts",
     "collectCoverageFrom": [
       "app/**/*.{ts,tsx}",
       "!app/**/*.test.{ts,tsx}",
