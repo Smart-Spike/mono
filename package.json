@@ -4,6 +4,8 @@
   "description": "monorepo example",
   "private": true,
   "devDependencies": {
+    "@types/jest": "^23.1.5",
+    "jest": "^23.3.0",
     "lerna": "^2.11.0",
     "ora": "^2.1.0",
     "simple-git": "^1.96.0"
@@ -28,6 +30,7 @@
     ]
   },
   "scripts": {
-    "generate": "plop --plopfile internals/generators/index.js"
+    "generate": "plop --plopfile internals/generators/index.js",
+    "test": "jest --projects projects/* packages/*"
   }
 }
