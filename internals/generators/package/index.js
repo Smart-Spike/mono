@@ -8,7 +8,7 @@ const path = require('path');
 const glob = require('glob');
 const root = path.resolve(__dirname, '../../../');
 const packageExists = require('../utils/packageExists');
-const config = require(path.join(root, 'package.json')).packagesMetaData || {};
+const config = require(path.join(root, 'package.json')).monoCliConfig || {};
 const scopes = config.scopes || [];
 
 module.exports = (plop) => {

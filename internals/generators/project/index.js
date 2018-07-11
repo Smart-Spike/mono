@@ -8,11 +8,13 @@ const path = require('path');
 const root = path.resolve(__dirname, '../../../');
 const shell = require('shelljs');
 const ora = require('ora');
+const config = require(path.join(root, 'package.json')).monoCliConfig || {};
+const projects = config.projects || [];
 const projectExists = require('../utils/projectExists');
 
 module.exports = (plop) => {
   const dashCase = plop.getHelper('dashCase');
-  plop.setActionType('generateBoilerplateProject', function (answers, config, plop) {
+  plop.setActionType('clone-project', function (answers, config, plop) {
     return new Promise((resolve, reject) => {
       const spinner = ora(`Cloning ${answers.type.repository}\n`).start();
       const clone = shell.exec(`git clone ${answers.type.repository} projects/${answers.name} --depth=1 --progress --verbose`, (code, _stdout, _stderr) => {
@@ -34,15 +36,15 @@ module.exports = (plop) => {
       type: 'list',
       name: 'type',
       message: 'Select a source project',
-      default: 'React Boilerplate (TypeScript)',
-      choices: () => [{
-        name: 'React Boilerplate (TypeScript)',
+      default: projects[0],
+      choices: () => projects.map((project) => ({
+        name: project.description,
+        short: project.name,
         value: {
-          repository: 'https://github.com/Smart-Spike/react-boilerplate-ts.git',
-          name: 'react-boilerplate'
-        },
-        short: 'react-boilerplate'
-      }]
+          repository: project.repository,
+          name: project.name
+        }
+      }))
     }, {
       type: 'input',
       name: 'name',
@@ -60,7 +62,7 @@ module.exports = (plop) => {
       message: 'Package description'
     }],
     actions: [{
-      type: 'generateBoilerplateProject'
+      type: 'clone-project'
     }, {
       type: 'modify',
       path: `${root}/projects/{{name}}/package.json`,

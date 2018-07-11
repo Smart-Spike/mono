@@ -24,10 +24,13 @@
     "**/@mono/typescript-config",
     "**/@mono/typescript-config/**"
   ],
-  "packagesMetaData": {
-    "scopes": [
-      "@mono"
-    ]
+  "monoCliConfig": {
+    "scopes": ["@mono"],
+    "projects": [{
+      "name": "react-boilerplate",
+      "description": "React Boilerplate (TypeScript)",
+      "repository": "https://github.com/Smart-Spike/react-boilerplate-ts.git"
+    }]
   },
   "scripts": {
     "generate": "plop --plopfile internals/generators/index.js",
