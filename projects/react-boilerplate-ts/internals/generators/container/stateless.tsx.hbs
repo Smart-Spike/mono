@@ -16,7 +16,7 @@ import { FormattedMessage } from 'react-intl';
 {{#if wantActionsAndReducer}}
 import { createStructuredSelector } from 'reselect';
 {{/if}}
-import { compose } from 'redux';
+import { compose, Dispatch } from 'redux';
 
 {{#if wantSaga}}
 import injectSaga from 'utils/injectSaga';
@@ -33,7 +33,11 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
-function {{ properCase name }}() {
+interface Props {
+  dispatch: Dispatch
+}
+
+const {{ properCase name }}: React.SFC<Props> = () => {
   return (
     <div>
     {{#if wantHeaders}}
@@ -48,10 +52,6 @@ function {{ properCase name }}() {
     </div>
   );
 }
-
-{{ properCase name }}.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
