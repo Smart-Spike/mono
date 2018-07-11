@@ -6,29 +6,14 @@
 
 const path = require('path');
 const root = path.resolve(__dirname, '../../../');
-const shell = require('shelljs');
-const ora = require('ora');
 const config = require(path.join(root, 'package.json')).monoCliConfig || {};
 const projects = config.projects || [];
 const projectExists = require('../utils/projectExists');
 
 module.exports = (plop) => {
   const dashCase = plop.getHelper('dashCase');
-  plop.setActionType('clone-project', function (answers, config, plop) {
-    return new Promise((resolve, reject) => {
-      const spinner = ora(`Cloning ${answers.type.repository}\n`).start();
-      const clone = shell.exec(`git clone ${answers.type.repository} projects/${answers.name} --depth=1 --progress --verbose`, (code, _stdout, _stderr) => {
-        if (code !== 0) {
-          spinner.fail();
-          return reject(err);
-        }
-        spinner.succeed(`Cloned: ${answers.type.repository}, done.`);
-        return resolve(`Created new ${answers.type.name} project in \`projects/${answers.name}\``);
-      });
-
-      clone.stderr.on('data', (data) => spinner.text = data.toString('utf8'));
-    });
-  });
+  plop.setActionType('clone-project', require('./actions/cloneProject'));
+  plop.setActionType('modify-pkg-json', require('./actions/modifyPkgJson'));
 
   return {
     description: 'Generates a new project in `/projects`',
@@ -62,22 +47,12 @@ module.exports = (plop) => {
       message: 'Package description'
     }],
     actions: [{
-      type: 'clone-project'
+      type: 'clone-project',
+      abortOnFail: true
     }, {
-      type: 'modify',
-      path: `${root}/projects/{{name}}/package.json`,
-      pattern: /"name": ".+"/gi,
-      template: '"name": "{{name}}"'
-    }, {
-      type: 'modify',
-      path: `${root}/projects/{{name}}/package.json`,
-      pattern: /"description": ".+"/gi,
-      template: '"description": "{{description}}"'
-    }, {
-      type: 'modify',
-      path: `${root}/projects/{{name}}/package.json`,
-      pattern: /"version": ".+"/gi,
-      template: '"version": "0.0.1"'
+      type: 'modify-pkg-json',
+      abortOnFail: false,
+      data: { root }
     }]
   };
 };
