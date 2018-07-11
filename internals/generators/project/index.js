@@ -6,7 +6,7 @@
 
 const path = require('path');
 const root = path.resolve(__dirname, '../../../');
-const git = require('simple-git');
+const shell = require('shelljs');
 const ora = require('ora');
 const projectExists = require('../utils/projectExists');
 
@@ -14,22 +14,17 @@ module.exports = (plop) => {
   const dashCase = plop.getHelper('dashCase');
   plop.setActionType('generateBoilerplateProject', function (answers, config, plop) {
     return new Promise((resolve, reject) => {
-      const spinner = ora(`Cloning ${answers.type.repository}`).start();
-      git()
-        .outputHandler((command, stdout, stderr) => {
-          stderr.on('data', function (data) {
-            spinner.text = data.toString('utf8');
-          })
-        })
-        .clone(answers.type.repository, `projects/${answers.name}`, ['--depth=1', '--progress', '--verbose'], (err, res) => {
-          if (err) {
-            spinner.fail();
-            reject(err);
-          }
+      const spinner = ora(`Cloning ${answers.type.repository}\n`).start();
+      const clone = shell.exec(`git clone ${answers.type.repository} projects/${answers.name} --depth=1 --progress --verbose`, (code, _stdout, _stderr) => {
+        if (code !== 0) {
+          spinner.fail();
+          return reject(err);
+        }
+        spinner.succeed(`Cloned: ${answers.type.repository}, done.`);
+        return resolve(`Created new ${answers.type.name} project in \`projects/${answers.name}\``);
+      });
 
-          spinner.succeed(`Cloned: ${answers.type.repository}, done.`);
-          resolve(`Created new ${answers.type.name} project in \`projects/${answers.name}\``);
-        });
+      clone.stderr.on('data', (data) => spinner.text = data.toString('utf8'));
     });
   });
 
@@ -43,7 +38,7 @@ module.exports = (plop) => {
       choices: () => [{
         name: 'React Boilerplate (TypeScript)',
         value: {
-          repository: 'https://github.com/react-boilerplate/react-boilerplate.git',
+          repository: 'https://github.com/Smart-Spike/react-boilerplate-ts.git',
           name: 'react-boilerplate'
         },
         short: 'react-boilerplate'
