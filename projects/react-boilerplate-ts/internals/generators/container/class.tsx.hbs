@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 {{#if wantHeaders}}
 import { Helmet } from 'react-helmet';
@@ -16,7 +15,7 @@ import { FormattedMessage } from 'react-intl';
 {{#if wantActionsAndReducer}}
 import { createStructuredSelector } from 'reselect';
 {{/if}}
-import { compose } from 'redux';
+import { compose, Dispatch } from 'redux';
 
 {{#if wantSaga}}
 import injectSaga from 'utils/injectSaga';
@@ -33,8 +32,12 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
+interface Props {
+  dispatch: Dispatch
+}
+
 /* eslint-disable react/prefer-stateless-function */
-export class {{ properCase name }} extends {{{ type }}} {
+export class {{ properCase name }} extends {{{ type }}}<Props> {
   render() {
     return (
       <div>
@@ -51,10 +54,6 @@ export class {{ properCase name }} extends {{{ type }}} {
     );
   }
 }
-
-{{ properCase name }}.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({

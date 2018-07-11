@@ -23,12 +23,12 @@ interface Descriptor {
 }
 
 export function injectSagaFactory(store, isValid: boolean = false) {
-  return function injectSaga(key, descriptor: any = {}, args?: any) {
+  return function injectSaga(key: string, descriptor: Descriptor = {}, args?: any) {
     if (!isValid) {
       checkStore(store);
     }
 
-    const newDescriptor = {
+    const newDescriptor: Descriptor = {
       ...descriptor,
       mode: descriptor.mode || RESTART_ON_REMOUNT,
     };
