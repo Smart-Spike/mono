@@ -51,30 +51,30 @@ module.exports = {
     },
   ],
   actions: data => {
-    // Generate index.js and index.test.js
+    // Generate index.tsx and index.test.tsx
     let componentTemplate;
 
     switch (data.type) {
       case 'Stateless Function': {
-        componentTemplate = './component/stateless.js.hbs';
+        componentTemplate = './component/stateless.tsx.hbs';
         break;
       }
       default: {
-        componentTemplate = './component/class.js.hbs';
+        componentTemplate = './component/class.tsx.hbs';
       }
     }
 
     const actions = [
       {
         type: 'add',
-        path: '../../app/components/{{properCase name}}/index.js',
+        path: '../../app/components/{{properCase name}}/index.tsx',
         templateFile: componentTemplate,
         abortOnFail: true,
       },
       {
         type: 'add',
-        path: '../../app/components/{{properCase name}}/tests/index.test.js',
-        templateFile: './component/test.js.hbs',
+        path: '../../app/components/{{properCase name}}/tests/index.test.tsx',
+        templateFile: './component/test.tsx.hbs',
         abortOnFail: true,
       },
     ];
@@ -83,18 +83,18 @@ module.exports = {
     if (data.wantMessages) {
       actions.push({
         type: 'add',
-        path: '../../app/components/{{properCase name}}/messages.js',
-        templateFile: './component/messages.js.hbs',
+        path: '../../app/components/{{properCase name}}/messages.ts',
+        templateFile: './component/messages.ts.hbs',
         abortOnFail: true,
       });
     }
 
-    // If want Loadable.js to load the component asynchronously
+    // If want Loadable.ts to load the component asynchronously
     if (data.wantLoadable) {
       actions.push({
         type: 'add',
-        path: '../../app/components/{{properCase name}}/Loadable.js',
-        templateFile: './component/loadable.js.hbs',
+        path: '../../app/components/{{properCase name}}/Loadable.ts',
+        templateFile: './component/loadable.ts.hbs',
         abortOnFail: true,
       });
     }
