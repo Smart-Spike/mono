@@ -6,9 +6,8 @@
 
 const path = require('path');
 const glob = require('glob');
-const root = path.resolve(__dirname, '../../../');
 const packageExists = require('../utils/packageExists');
-const config = require(path.join(root, 'package.json')).packagesMetaData || {};
+const config = require(path.join(process.env.MONO_ROOT, 'package.json')).monoCliConfig || {};
 const scopes = config.scopes || [];
 
 module.exports = (plop) => {
@@ -61,7 +60,7 @@ module.exports = (plop) => {
         const file = path.relative(tmplDir, templateFile).replace(/\.hbs$/, '');
         return {
           type: 'add',
-          path: path.join(root, 'packages/{{name}}', file),
+          path: path.join(process.env.MONO_ROOT, 'packages/{{name}}', file),
           templateFile: templateFile
         };
       });

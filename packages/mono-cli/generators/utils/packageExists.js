@@ -6,7 +6,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const packages = fs.readdirSync(path.join(__dirname, '../../../packages'));
+const packages = fs.readdirSync(path.join(process.env.MONO_ROOT, 'packages'));
 
 function packageExists(pkg) {
   return packages.indexOf(pkg) >= 0;

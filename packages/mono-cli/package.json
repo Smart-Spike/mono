@@ -1,0 +1,20 @@
+{
+  "name": "@mono/mono-cli",
+  "description": "Command line tool for working with monorepo generators",
+  "version": "0.0.1",
+  "bin": {
+    "mono": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "find-root": "^1.1.0",
+    "interpret": "^1.1.0",
+    "liftoff": "^2.5.0",
+    "minimist": "^1.2.0",
+    "node-plop": "^0.15.0",
+    "ora": "^2.1.0",
+    "plop": "^2.0.0",
+    "shelljs": "^0.8.2",
+    "v8flags": "^3.1.1"
+  }
+}

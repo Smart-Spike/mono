@@ -5,10 +5,11 @@
   "private": true,
   "devDependencies": {
     "@types/jest": "^23.1.5",
+    "@mono/mono-cli": "^0.0.1",
     "jest": "^23.3.0",
     "lerna": "^2.11.0",
     "ora": "^2.1.0",
-    "simple-git": "^1.96.0"
+    "shelljs": "^0.8.2"
   },
   "engines": {
     "node": ">=10.5.0",
@@ -18,16 +19,19 @@
     "packages": [
       "projects/*",
       "packages/*"
+    ],
+    "nohoist": [
+      "**/@mono/typescript-config",
+      "**/@mono/typescript-config/**"
     ]
   },
-  "nohoist": [
-    "**/@mono/typescript-config",
-    "**/@mono/typescript-config/**"
-  ],
-  "packagesMetaData": {
-    "scopes": [
-      "@mono"
-    ]
+  "monoCliConfig": {
+    "scopes": ["@mono"],
+    "projects": [{
+      "name": "react-boilerplate",
+      "description": "React Boilerplate (TypeScript)",
+      "repository": "https://github.com/Smart-Spike/react-boilerplate-ts.git"
+    }]
   },
   "scripts": {
     "generate": "plop --plopfile internals/generators/index.js",
