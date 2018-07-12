@@ -1,0 +1,15 @@
+{
+  "name": "@mono/mono-cli",
+  "description": "Command line tool for working with monorepo generators",
+  "version": "0.0.1",
+  "bin": {
+    "mono": "./index.js"
+  },
+  "dependencies": {
+    "find-yarn-workspace-root": "^1.1.0",
+    "minimist": "^1.2.0",
+    "ora": "^2.1.0",
+    "plop": "^2.0.0",
+    "shelljs": "^0.8.2"
+  }
+}

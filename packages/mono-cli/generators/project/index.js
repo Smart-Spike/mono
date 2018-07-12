@@ -5,8 +5,8 @@
  */
 
 const path = require('path');
-const root = path.resolve(__dirname, '../../../');
-const config = require(path.join(root, 'package.json')).monoCliConfig || {};
+const argv = require('yargs').argv;
+const config = require(path.join(process.env.MONO_ROOT, 'package.json')).monoCliConfig || {};
 const projects = config.projects || [];
 const projectExists = require('../utils/projectExists');
 
@@ -52,7 +52,7 @@ module.exports = (plop) => {
     }, {
       type: 'modify-pkg-json',
       abortOnFail: false,
-      data: { root }
+      data: { root: process.env.MONO_ROOT }
     }]
   };
 };
