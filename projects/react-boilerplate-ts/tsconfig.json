@@ -2,7 +2,10 @@
   "compilerOptions": {
     "allowJs": true,
     "jsx": "react",
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "tsDist",
@@ -13,5 +16,13 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["docs", "internals", "node_modules", "tsDist", "dist", "server", "coverage"]
+  "exclude": [
+    "docs",
+    "internals",
+    "node_modules",
+    "tsDist",
+    "dist",
+    "server",
+    "coverage"
+  ]
 }

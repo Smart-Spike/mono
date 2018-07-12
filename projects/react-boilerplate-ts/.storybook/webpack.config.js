@@ -6,7 +6,7 @@ module.exports = (baseConfig, env, config) => {
     test: /\.(ts|tsx)$/,
     loader: require.resolve('awesome-typescript-loader'),
     options: {
-        configFileName: './tsconfig.storybook.json'
+      configFileName: './tsconfig.storybook.json'
     },
   });
   config.plugins.push(new TSDocgenPlugin()); // optional

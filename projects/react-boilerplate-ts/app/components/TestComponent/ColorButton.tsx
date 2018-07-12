@@ -1,10 +1,10 @@
 import * as React from "react";
- 
+
 interface ColorButtonProps {
   /** Buttons background color */
   color: "blue" | "green";
 }
- 
+
 /** A button with a configurable background color. */
 export const ColorButton: React.SFC<ColorButtonProps> = props => (
   <button
@@ -18,5 +18,5 @@ export const ColorButton: React.SFC<ColorButtonProps> = props => (
     {props.children}
   </button>
 );
- 
+
 export default ColorButton;
