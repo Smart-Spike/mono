@@ -5,7 +5,6 @@
  */
 
 const path = require('path');
-const argv = require('yargs').argv;
 const config = require(path.join(process.env.MONO_ROOT, 'package.json')).monoCliConfig || {};
 const projects = config.projects || [];
 const projectExists = require('../utils/projectExists');

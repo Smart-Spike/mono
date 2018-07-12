@@ -6,7 +6,6 @@
 
 const fs = require('fs');
 const path = require('path');
-const argv = require('yargs').argv;
 const packages = fs.readdirSync(path.join(process.env.MONO_ROOT, 'packages'));
 
 function packageExists(pkg) {

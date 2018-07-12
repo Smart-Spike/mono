@@ -3,6 +3,7 @@
 'use strict';
 
 const path = require('path');
+const fs = require('fs');
 const args = process.argv.slice(2);
 const argv = require('minimist')(args);
 const Liftoff = require('liftoff');
@@ -11,15 +12,14 @@ const interpret = require('interpret');
 const chalk = require('chalk');
 const nodePlop = require('node-plop');
 const out = require('plop/src/console-out');
-const globalPkg = require('plop/package.json');
-const findWorkspaceRoot = require('find-yarn-workspace-root');
+const globalPkg = require('./package.json');
+const findRoot = require('find-root');
 
-const workspaceRoot = argv.workspaceRoot
-  ? path.resolve(argv.workspaceRoot)
-  : findWorkspaceRoot(process.cwd());
-
-if (!workspaceRoot) {
-  throw new Error('You do not appear to be in a compatible monorepo.\nExpected `cwd` to be within a yarn workspace or for a `--workspace-root` arg to be provided.');
+let workspaceRoot;
+try {
+  workspaceRoot = findRoot(argv['workspace-root'] || process.cwd(), (dir) => fs.existsSync(path.resolve(dir, 'lerna.json')));
+} catch(err) {
+  throw new Error('You do not appear to be in a compatible monorepo.\nExpected `cwd` to be within a yarn workspace or for a valid `--workspace-root` arg to be provided.');
 }
 
 process.env.MONO_ROOT = workspaceRoot;
@@ -63,7 +63,6 @@ function run(env) {
   }
 
   // set the default base path to the plopfile directory
-  console.log(plopfilePath, argv.force || argv.f)
   const plop = nodePlop(plopfilePath, {
     force: argv.force || argv.f
   });

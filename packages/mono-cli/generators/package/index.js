@@ -6,7 +6,6 @@
 
 const path = require('path');
 const glob = require('glob');
-const argv = require('yargs').argv;
 const packageExists = require('../utils/packageExists');
 const config = require(path.join(process.env.MONO_ROOT, 'package.json')).monoCliConfig || {};
 const scopes = config.scopes || [];
