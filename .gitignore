@@ -1,11 +1,14 @@
-.DS_Store
+# Don't check auto-generated stuff into git
 /node_modules
 /packages/*/node_modules
 /projects/*/node_modules
-*.log
-*.cache
 coverage
 dist
+
+# Cruft
+*.log
+*.cache
+.DS_Store
 .idea/
 .vscode/
 *.iml
