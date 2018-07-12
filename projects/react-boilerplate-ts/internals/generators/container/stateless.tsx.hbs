@@ -16,7 +16,7 @@ import { FormattedMessage } from 'react-intl';
 {{#if wantActionsAndReducer}}
 import { createStructuredSelector } from 'reselect';
 {{/if}}
-import { compose } from 'redux';
+import { compose, Dispatch } from 'redux';
 
 {{#if wantSaga}}
 import injectSaga from 'utils/injectSaga';
@@ -33,28 +33,25 @@ import saga from './saga';
 import messages from './messages';
 {{/if}}
 
-/* eslint-disable react/prefer-stateless-function */
-export class {{ properCase name }} extends {{{ type }}} {
-  render() {
-    return (
-      <div>
-      {{#if wantHeaders}}
-        <Helmet>
-          <title>{{properCase name}}</title>
-          <meta name="description" content="Description of {{properCase name}}" />
-        </Helmet>
-      {{/if}}
-      {{#if wantMessages}}
-        <FormattedMessage {...messages.header} />
-      {{/if}}
-      </div>
-    );
-  }
+interface Props {
+  dispatch: Dispatch
 }
 
-{{ properCase name }}.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
+const {{ properCase name }}: React.SFC<Props> = () => {
+  return (
+    <div>
+    {{#if wantHeaders}}
+      <Helmet>
+        <title>{{properCase name}}</title>
+        <meta name="description" content="Description of {{properCase name}}" />
+      </Helmet>
+    {{/if}}
+    {{#if wantMessages}}
+      <FormattedMessage {...messages.header} />
+    {{/if}}
+    </div>
+  );
+}
 
 {{#if wantActionsAndReducer}}
 const mapStateToProps = createStructuredSelector({
@@ -69,17 +66,14 @@ function mapDispatchToProps(dispatch) {
 }
 
 {{#if wantActionsAndReducer}}
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-const withReducer = injectReducer({ key: '{{ camelCase name }}', reducer });
+const withReducer = injectReducer({ key: '{{ lowerCase name }}', reducer });
 {{else}}
 const withConnect = connect(null, mapDispatchToProps);
 {{/if}}
 {{#if wantSaga}}
-const withSaga = injectSaga({ key: '{{ camelCase name }}', saga });
+const withSaga = injectSaga({ key: '{{ lowerCase name }}', saga });
 {{/if}}
 
 export default compose(
@@ -89,5 +83,5 @@ export default compose(
 {{#if wantSaga}}
   withSaga,
 {{/if}}
-  withConnect
+  withConnect,
 )({{ properCase name }});
