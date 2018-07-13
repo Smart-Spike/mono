@@ -124,7 +124,7 @@ describe('injectors', () => {
     it('should check a store if the second argument is falsy', () => {
       const inject = injectSagaFactory({});
 
-      expect(() => inject('test', testSaga)).toThrow();
+      expect(() => inject('test', { saga: testSaga})).toThrow();
     });
 
     it('it should not check a store if the second argument is true', () => {

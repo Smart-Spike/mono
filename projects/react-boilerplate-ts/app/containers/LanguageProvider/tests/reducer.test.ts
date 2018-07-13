@@ -1,23 +1,21 @@
-import { fromJS } from 'immutable';
-
-import languageProviderReducer from '../reducer';
+import { handlers, default as reducer } from '../reducer';
 import { CHANGE_LOCALE } from '../constants';
 
-describe('languageProviderReducer', () => {
+describe('handlers', () => {
   it('returns the initial state', () => {
-    expect(languageProviderReducer(undefined, {})).toEqual(
-      fromJS({
+    expect(reducer(undefined, { type: "TEST" })).toEqual(
+      {
         locale: 'en',
-      }),
+      },
     );
   });
 
   it('changes the locale', () => {
     expect(
-      languageProviderReducer(undefined, {
+      handlers[CHANGE_LOCALE](undefined, {
         type: CHANGE_LOCALE,
         locale: 'de',
-      }).toJS(),
+      }),
     ).toEqual({
       locale: 'de',
     });

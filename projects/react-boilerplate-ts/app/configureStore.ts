@@ -3,7 +3,6 @@
  */
 
 import { createStore, applyMiddleware, compose, Store, AnyAction } from 'redux';
-import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware, { Task } from 'redux-saga';
 import createReducer from './reducers';
@@ -34,7 +33,7 @@ export default function configureStore(initialState = {}, history) {
         })
       : compose;
 
-  const store: AppStore = createStore(createReducer(), fromJS(initialState), composeEnhancers(...enhancers));
+  const store: AppStore = createStore(createReducer(), initialState, composeEnhancers(...enhancers));
 
   // Extensions
   store.runSaga = sagaMiddleware.run;
