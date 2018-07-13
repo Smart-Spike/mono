@@ -34,7 +34,6 @@
     }]
   },
   "scripts": {
-    "generate": "plop --plopfile internals/generators/index.js",
     "test": "jest --projects projects/* packages/*"
   }
 }
