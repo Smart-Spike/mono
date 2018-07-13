@@ -4,22 +4,25 @@
  *
  */
 
-import { fromJS } from 'immutable';
-
 import { CHANGE_LOCALE } from './constants';
 import { DEFAULT_LOCALE } from '../../i18n';
+import { ChangeLocaleAction } from './actions';
+import { AppAction } from 'reducers';
 
-export const initialState = fromJS({
-  locale: DEFAULT_LOCALE,
-});
-
-function languageProviderReducer(state = initialState, action) {
-  switch (action.type) {
-    case CHANGE_LOCALE:
-      return state.set('locale', action.locale);
-    default:
-      return state;
-  }
+export interface LanguageState {
+  locale: string 
 }
 
-export default languageProviderReducer;
+export const initialState: LanguageState = {
+  locale: DEFAULT_LOCALE,
+};
+
+export const handlers = {
+  [CHANGE_LOCALE]: (state: LanguageState, action: ChangeLocaleAction): LanguageState => ({
+      locale: action.locale
+  })
+};
+export default ( state: LanguageState = initialState, action: AppAction) => {
+  const handler = handlers[action.type];
+  return handler ? handler(state, action) : state;
+};
