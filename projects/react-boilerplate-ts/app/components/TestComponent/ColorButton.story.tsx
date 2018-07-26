@@ -1,11 +1,16 @@
-import * as React from "react";
-import { storiesOf } from "@storybook/react";
-import { withInfo } from "@storybook/addon-info";
-import ColorButton from "./ColorButton";
+import * as React from 'react';
+import ColorButton, { someEnum } from './ColorButton';
+import { boolean, select, color } from '@storybook/addon-knobs';
+import { selectEnum } from '../../utils/storybook';
 
-storiesOf("Components", module).add(
-  "ColorButton",
-  withInfo({ inline: true })(() => (
-    <ColorButton color="blue">Color Button</ColorButton>
-  )),
+const props = () => ({
+  someType: select('someType', selectEnum(someEnum), someEnum.Bob),
+  enabled: boolean('enabled', false),
+  bgColor: color('bgColor', 'red'),
+});
+
+export default () => (
+  <ColorButton color="#eee" {...props()}>
+    Color Button
+  </ColorButton>
 );

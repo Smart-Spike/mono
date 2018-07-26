@@ -246,6 +246,12 @@
     global "^4.3.2"
     prop-types "^15.6.1"
 
+"@storybook/addon-options@^3.4.8":
+  version "3.4.8"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-options/-/addon-options-3.4.8.tgz#e2b79605bb8674e8d67e3ad695f4b7a489bcd06a"
+  dependencies:
+    babel-runtime "^6.26.0"
+
 "@storybook/addons@4.0.0-alpha.14":
   version "4.0.0-alpha.14"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-4.0.0-alpha.14.tgz#682be365820a1f4c0b9a90be53916b43b20d36e5"
@@ -602,6 +608,10 @@
   resolved "https://registry.yarnpkg.com/@types/storybook__addon-links/-/storybook__addon-links-3.3.1.tgz#5bbfc05b3882c4c2afd8378222199ba0c570f524"
   dependencies:
     "@types/react" "*"
+
+"@types/storybook__addon-options@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@types/storybook__addon-options/-/storybook__addon-options-3.2.2.tgz#f42f81414fa9692cf20d947e9b49c60c4bdfbc4d"
 
 "@types/storybook__react@^3.0.8":
   version "3.0.8"
